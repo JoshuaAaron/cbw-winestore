@@ -1,28 +1,24 @@
 <template>
-  <div id="app">
-    <amplify-authenticator>
-      <div class="container">
-      <form @submit.prevent="register">
-          <h2>Register</h2>
-          <input
-              type="email"
-              v-model="email"
-              placeholder="Email address..."
-          />
-          <input
-              type="password"
-              v-model="password"
-              placeholder="password..."
-          />
-          <button>Register</button>
-      </form>
-      </div>
-      
-      <div class="welcome">
-        <h1>Hey, {{user.username}}!</h1>
-        <amplify-sign-out></amplify-sign-out>
-      </div>
-      <div class="form-body">
+  <div id='app'>
+    <div  class='nav'>
+      <router-link tag="p" to="/">
+        <a>Home</a>
+      </router-link>
+      <router-link tag="p" to="/profile">
+        <a>Profile</a>
+      </router-link>
+      <router-link tag="p" to="/protected">
+        <a>Protected</a>
+      </router-link>
+      <router-link tag="p" to="/auth" v-if="!signedIn">
+        <a>Sign Up / Sign In</a>
+      </router-link>
+    </div>
+    <router-view></router-view>
+    <div class='sign-out'>
+      <amplify-sign-out v-if="signedIn"></amplify-sign-out>
+    </div>
+    <div class="form-body">
         <form v-on:submit.prevent>
           <button @click='getWines' class='button'>GET /wines</button>
           <button @click='getWine' :disabled='lastWineId==""' class='button'>GET /wines/:id</button>
@@ -32,43 +28,41 @@
           <div>Current Wine: {{ lastWineId || "Not set. Add a new wine" }}</div>
         </form>
       </div>
-    </amplify-authenticator>
   </div>
+      
 </template>
 
 <script>
-import { Auth } from 'aws-amplify';
-import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { API } from 'aws-amplify';
+
+import { Auth, Hub } from 'aws-amplify'
 
 export default {
   name: 'app',
   data() {
-    return { 
-    email: '', 
-    password: '', 
-  };
-  },
-  async register() {
-    try {
-        await Auth.signUp({
-            username: this.email,
-            password: this.password,
-        });
-        alert('User successfully registered. Please login');
-    } catch (error) {
-        alert(error.message);
+    return {
+      user: { },
+      lastWineId: ""
     }
-},
-  created() {
-    // authentication state managament
-    onAuthUIStateChange((state, user) => {
-      // set current user and load data after login
-      if (state === AuthState.SignedIn) {
-        this.user = user;
-        console.log(user);
+  },
+   beforeCreate() {
+    Hub.listen('auth', data => {
+      console.log('data:', data)
+      const { payload } = data
+      if (payload.event === 'signIn') {
+        this.signedIn = true
+        this.$router.push('/profile')
+      }
+      if (payload.event === 'signOut') {
+        this.$router.push('/auth')
+        this.signedIn = false
       }
     })
+    Auth.currentAuthenticatedUser()
+      .then(() => {
+        this.signedIn = true
+      })
+      .catch(() => this.signedIn = false)
   },
   methods: {
     getWines: function() {
