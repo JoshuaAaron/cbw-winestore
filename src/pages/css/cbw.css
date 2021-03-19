@@ -1,0 +1,79 @@
+/* Hamburger Nav
+		https://codepen.io/riogrande/pen/gbXxdx/
+*/
+
+.overlay {
+		display:none;
+    position:fixed;
+    top:0;
+    height:100%;
+    width:100%;
+    background:#0c4e2e;
+    overflow:auto;
+    z-index:99;
+}
+.wrap {
+    color:#e9e9e9;
+    text-align:center;
+    max-width:90%;
+    margin:0 auto;
+}
+
+/* Rotate effect */
+.rotate-left {
+  transform: rotate(-3deg);
+}
+
+/* get rid of dotted box */
+a, a:active, a:focus, a:hover {
+  outline: none !important;
+}
+
+/* links and labels */
+.cbw-link {
+   color: #0c4e2e; /* logo green */
+}
+.txt-link{
+  border-bottom: 1px solid #0c4e2e;
+}
+
+.txt-link:hover {
+  background: #eee;
+}
+
+label:hover {
+  text-decoration: none;
+}
+
+/* Header Logo */
+.full-bleed-logo {
+  height: 64px;
+}
+@media screen and (min-width: 30em) {
+  .full-bleed-logo {
+    height: 100px;
+  }
+}
+.standard-logo {
+  height: 54px;
+}
+@media screen and (min-width: 30em) {
+  .standard-logo {
+    height: 74px;
+  }
+}
+
+/* Responsive Video */
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

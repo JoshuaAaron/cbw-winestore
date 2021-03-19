@@ -1,0 +1,7 @@
+{
+    "tableName": "wineDB",
+    "partitionKeyName": "id",
+    "partitionKeyType": "N",
+    "sortKeyName": "type",
+    "sortKeyType": "S"
+}

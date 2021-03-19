@@ -1,0 +1,45 @@
+{
+    "paths": [
+        {
+            "name": "/wines",
+            "lambdaFunction": "winesLambda",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/GET"
+                ]
+            },
+            "policyResourceName": "/wines"
+        }
+    ],
+    "resourceName": "winesapi",
+    "apiName": "winesapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "winesLambda"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 1,
+        "authRoleName": "amplify-cbwwinestore-dev-194720-authRole",
+        "unAuthRoleName": "amplify-cbwwinestore-dev-194720-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "winesLambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
