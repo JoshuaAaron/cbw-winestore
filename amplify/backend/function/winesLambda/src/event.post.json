@@ -1,0 +1,8 @@
+{
+    "httpMethod": "POST",
+    "path": "/wines",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{ \"name\" : \"wine-1\", \"type\" : \"merlot\", \"featured\" : \"false\", \"price\" : \"9.99\", \"image\" : \"image.jpg\", }"
+  }

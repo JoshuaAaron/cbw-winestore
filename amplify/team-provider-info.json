@@ -18,7 +18,7 @@
       "function": {
         "winesLambda": {
           "deploymentBucketName": "amplify-cbwwinestore-dev-194720-deployment",
-          "s3Key": "amplify-builds/winesLambda-615272537a70556c6a50-build.zip"
+          "s3Key": "amplify-builds/winesLambda-4b564d5862614b354156-build.zip"
         }
       }
     }

@@ -1,0 +1,8 @@
+{
+    "httpMethod": "PUT",
+    "path": "/wines",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{ \"id\" : \"318dfc74-5666-46f1-844d-431c3ac18784\", \"name\" : \"wine-1\", \"type\" : \"merlot\", \"featured\" : \"true\", \"price\" : \"19.99\", \"image\" : \"image2.jpg\", }"
+  }

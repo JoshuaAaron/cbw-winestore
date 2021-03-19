@@ -165,9 +165,11 @@ app.post("/wines", function (request, response) {
     Item: {
       ...request.body,
       id: uuidv4(),               // auto-generate id
-      complete: false,            // default for new wines
-      createdAt: timestamp,
-      updatedAt: timestamp,
+      name: " ",
+      type: " ",
+      featured: false,            // default for new wines
+      price: 0.00,
+      image: " ",
       userId: getUserId(request)  // userId from request
     }
   }
